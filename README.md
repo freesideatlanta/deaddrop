@@ -40,4 +40,4 @@ This way, if Eve wants to intercept `ss.tar.gz`, Eve needs to know the locator (
 
 Even with this information, Eve doesn't know either who uploaded the file or who the intended recipient is, so it's not possible to decrypt the file.
 
-As a bonus, if only one of either the sender or the recipient's private keys are compromised, then the file remains encrypted to Eve.
+As a bonus, if only one of either the sender or the recipient's private keys are compromised, then the file remains encrypted to Eve (if either the sender or recipient remain unknown to Eve).
