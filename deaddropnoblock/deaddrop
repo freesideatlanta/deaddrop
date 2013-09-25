@@ -4,6 +4,8 @@
 import deaddropdata
 import argparse
 
+# TODO: store the path and name of the block in a config file
+# TODO: check out ConfigParser: http://docs.python.org/2/library/configparser.html
 database = deaddropdata.deaddropdata('block')
 block = 'block'
 
