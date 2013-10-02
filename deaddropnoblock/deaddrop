@@ -3,11 +3,17 @@
 
 import deaddropdata
 import argparse
+import configparser
 
 # TODO: store the path and name of the block in a config file
 # TODO: check out ConfigParser: http://docs.python.org/2/library/configparser.html
-database = deaddropdata.deaddropdata('block')
-block = 'block'
+config = configparser.ConfigParser()
+config.read('deaddrop.ini')
+
+
+block = config['Options']['EncryptedBlock']
+database = config['Options']['Database']
+datahandler = deaddropdata.deaddropdata(database)
 
 def getsize(filename):
 	#finds the size of a file
@@ -50,15 +56,15 @@ args = parser.parse_args()
 ##############################################
 if args.write:
 	filename = args.filename
-	offset = database.getlastvalues()[0] + database.getlastvalues()[1]
+	offset = datahandler.getlastvalues()[1] + datahandler.getlastvalues()[2]
 	writefile(filename,offset)
-	database.givevalues(offset, getsize(filename))
+	datahandler.givevalues(offset, getsize(filename))
 	print('The offset is ' + str(offset))
 
 elif args.retrieve:
 	filename = args.filename
 	offset = args.offset
-	size = database.findvalues(offset)
+	size = datahandler.findvalues(offset)
 	retrievefile(filename,offset,size)
 
 print('Done')

@@ -2,8 +2,14 @@
 #Careful. This will reset the database
 
 import sqlite3 as lite
+import configparser
 
-con = lite.connect('deaddrop.db')
+config = configparser.ConfigParser()
+config.read('deaddrop.ini')
+
+database = config['Options']['Database']
+
+con = lite.connect(database)
 cur = con.cursor()
 
 with con:
